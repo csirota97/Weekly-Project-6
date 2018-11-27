@@ -1,5 +1,6 @@
 package application;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,6 +25,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import res.Contact;
 
@@ -32,7 +34,7 @@ public class ListController extends Application implements Serializable {
 	private static Stage mainStage;
 	public static ObservableList<Contact> contacts = FXCollections.observableArrayList();
 	private static ListView lv;
-	private static String name = "default";
+	public static String name;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -91,12 +93,27 @@ public class ListController extends Application implements Serializable {
 		}
 		(new Main()).start(mainStage);
 	}
-	
+
+	@FXML
+	private void select (ActionEvent e) {
+		try {
+			writeApp(contacts.toArray());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			(new ListSelectorController()).start(mainStage);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 	@FXML
 	private void add(ActionEvent e) {
 		String n="", e2="";
 		
-		while(n.equals("") || n == null) {
+		while(n.equals("")) {
 			TextInputDialog dialog = new TextInputDialog();
 			dialog.setTitle("Contact Name");
 			dialog.setHeaderText("Contact Name:");
@@ -104,7 +121,10 @@ public class ListController extends Application implements Serializable {
 			n=dialog.getEditor().getText();
 		}
 
-		while(e2.equals("") || e2 == null) {
+		if (n == null) {
+			return;
+		}
+		while(e2.equals("")) {
 			TextInputDialog dialog2 = new TextInputDialog();
 			dialog2.setTitle("Contact Email");
 			dialog2.setHeaderText("Contact Email:");
@@ -145,10 +165,10 @@ public class ListController extends Application implements Serializable {
 	 */
 	
 	public static void writeApp(Object[] lc) throws IOException {
-			String storeDir = "src"+File.separator+"albums"+File.separator;
-			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(storeDir + name + ".list"));
-			oos.writeObject(lc);
-			System.out.println("Written");
+		String storeDir = "src"+File.separator+"albums"+File.separator;
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(storeDir + name + ".list"));
+		oos.writeObject(lc);
+		System.out.println("Written");
 	}
 	
 	/**

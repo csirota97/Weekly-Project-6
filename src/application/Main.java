@@ -129,6 +129,7 @@ public class Main extends Application implements Serializable {
 	}
 	
 	public static void main(String[] args) {
+		ListController.name="default";
 		launch(args);
 	}
 	

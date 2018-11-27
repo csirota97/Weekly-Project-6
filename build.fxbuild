@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="ASCII"?>
-<anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="${project}/build">
+<?xml version="1.0" enoding="ASCII"?>
+<anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.elipse.fx.ide.jdt/1.0" buildDiretory="${projet}/build">
   <deploy>
-    <application name="ListServe"/>
+    <appliation name="ListServe"/>
     <info/>
   </deploy>
   <signjar/>

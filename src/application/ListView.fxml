@@ -38,7 +38,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Select List" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#select" text="Select List" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Button mnemonicParsing="false" onAction="#back" text="Mail" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <Button mnemonicParsing="false" onAction="#delete" text="Delete Entry" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                </children>
